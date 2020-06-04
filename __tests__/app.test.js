@@ -41,6 +41,28 @@ describe('app routes', () => {
         });
       });
   });
+  
+  it('gets a list of jokes', async() => {
+    await Hilarity.create({
+      joke: 'What I\'m typing right here is super funny',
+      comedian: 'Yours Truly' 
+    });
 
+    return request(app)
+      .get('/hilarity')
+      .then(res => {
+        expect(res.body).toEqual([
+          {
+            _id: expect.anything(),
+            joke: 'What I\'m typing right here is super funny',
+            comedian: 'Yours Truly',
+            laughs: 0,
+            __v: 0
+          }
+        ]);
+      });
+  });
+
+  // it('gets a joke by id', => {
 
 });
