@@ -47,6 +47,7 @@ describe('app routes', () => {
       joke: 'What I\'m typing right here is super funny',
       comedian: 'Yours Truly' 
     });
+
     return request(app)
       .get('/hilarity')
       .then(res => {
@@ -61,4 +62,7 @@ describe('app routes', () => {
         ]);
       });
   });
+
+  // it('gets a joke by id', => {
+
 });
