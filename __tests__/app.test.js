@@ -36,11 +36,11 @@ describe('app routes', () => {
           _id: expect.anything(),
           joke: 'What I\'m typing right here is super funny',
           comedian: 'Yours Truly',
-          laughs: 0,
+          laughs: 0, 
           __v: 0 
         });
       });
   });
 
-  
+
 });
