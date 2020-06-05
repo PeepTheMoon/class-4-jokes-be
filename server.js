@@ -9,5 +9,3 @@ mongoose.connect('mongodb://localhost:21740/hilarity', {
 app.listen(3000, () => {
   console.log('Started on 3000');
 });
-
-// ```run start:watch``` your tests by running ```nodemon server.js``` from the terminal
