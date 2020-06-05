@@ -83,7 +83,30 @@ describe('app routes', () => {
       });
   });
 
-  // it('allows a user to update a joke', async() => {
-  //   const joke = await
-  // })
+  it('allows a user to update a joke', async() => {
+    const joke = await Hilarity.create({
+      joke: 'What I\'m typing right here is super funny',
+      comedian: 'Yours Truly'
+    });
+
+    return request(app)
+      .patch(`/hilarity/${joke._id}`)
+      .send({
+        comedian: 'Some Other Guy'
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.anything(),
+          joke: 'What I\'m typing right here is super funny',
+          comedian: 'Some Other Guy',
+          laughs: 0,
+          __v: 0
+        });
+      });
+  });
+
+  it('allows a user to delete a joke', async() => {
+    // const joke = 
+  });
+
 });
