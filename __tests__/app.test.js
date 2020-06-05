@@ -21,7 +21,8 @@ describe('app routes', () => {
   });
 
   afterAll(() => {
-    return mongoose.connection.close();
+    return mongoose.connection.close()
+      .then(() => mongo.connection.stop());
   });
 
   it('creates a new joke', () => {
@@ -106,7 +107,23 @@ describe('app routes', () => {
   });
 
   it('allows a user to delete a joke', async() => {
-    // const joke = 
+    const joke = await Hilarity.create({
+      joke: 'What I\'m typing right here is super funny',
+      comedian: 'Yours Truly'
+    }); 
+
+    return request(app)
+      .delete(`/hilarity/${joke._id}`)
+      .then(res => {
+        expect(res.body).toEqual(
+          {
+            _id: expect.anything(),
+            joke: 'What I\'m typing right here is super funny',
+            comedian: 'Yours Truly',
+            laughs: 0,
+            __v: 0
+          });
+      });
   });
 
 });
