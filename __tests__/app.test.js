@@ -7,6 +7,7 @@ const Hilarity = require('../lib/models/Hilarity');
 describe('app routes', () => {
   const mongo = new MongoMemoryServer();
 
+  //connects to the db
   beforeAll(() => {
     return mongo.getUri()
     
@@ -16,10 +17,12 @@ describe('app routes', () => {
       }));
   });
 
+  //before each test, drops the database to test a fresh case each time
   beforeEach(() => {
     return mongoose.connection.dropDatabase();
   });
 
+  //afterwards, it closes the connection with mongoose and stops the server connection
   afterAll(() => {
     return mongoose.connection.close()
       .then(() => mongo.stop());
