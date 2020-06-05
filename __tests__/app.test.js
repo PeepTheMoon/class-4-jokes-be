@@ -22,7 +22,7 @@ describe('app routes', () => {
 
   afterAll(() => {
     return mongoose.connection.close()
-      .then(() => mongo.connection.stop());
+      .then(() => mongo.stop());
   });
 
   it('creates a new joke', () => {
@@ -75,7 +75,7 @@ describe('app routes', () => {
       .then(res => {
         expect(res.body).toEqual(
           {
-            _id: expect.anything(),
+            _id: joke.id,
             joke: 'What I\'m typing right here is super funny',
             comedian: 'Yours Truly',
             laughs: 0,
@@ -97,7 +97,7 @@ describe('app routes', () => {
       })
       .then(res => {
         expect(res.body).toEqual({
-          _id: expect.anything(),
+          _id: joke.id,
           joke: 'What I\'m typing right here is super funny',
           comedian: 'Some Other Guy',
           laughs: 0,
@@ -117,7 +117,7 @@ describe('app routes', () => {
       .then(res => {
         expect(res.body).toEqual(
           {
-            _id: expect.anything(),
+            _id: joke.id,
             joke: 'What I\'m typing right here is super funny',
             comedian: 'Yours Truly',
             laughs: 0,
